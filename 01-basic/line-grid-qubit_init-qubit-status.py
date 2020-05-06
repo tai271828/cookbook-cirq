@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """This script demos there is no difference between using LineQubit and
 GridQubit in Cirq when developing an algorithm. The difference only matters
 when implementing corresponding cicuits in real world."""
@@ -13,7 +14,7 @@ def simulate_and_measure(qubit, repetitions=10, mkey="m"):
     :param mkey: measurement type
     :return: (result, circuit) tuple
     """
-    operations = [cirq.X(qubit), cirq.measure(qubit, key=mkey)]
+    operations = [cirq.measure(qubit, key=mkey)]
     circuit = cirq.Circuit(operations)
     simulator = cirq.Simulator()
     result = simulator.run(circuit, repetitions=repetitions)

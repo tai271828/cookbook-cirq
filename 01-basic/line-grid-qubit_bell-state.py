@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """This script demos there is no difference between using LineQubit and
 GridQubit in Cirq when developing an algorithm. The difference only matters
 when implementing corresponding cicuits in real world."""
