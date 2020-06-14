@@ -1,0 +1,34 @@
+name: Minimal Testing
+
+on: [push, pull_request]
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Dependency (pip)
+        run: |
+          # development and testing tools
+          pip3 install invoke
+          # target tools
+          pip3 install cirq
+
+      - name: Run Tests
+        env:
+          EXAMPLE_PATH_1: 01-basic
+        run: |
+          ${GITHUB_WORKSPACE}/${EXAMPLE_PATH_1}/line-grid-qubit_init-qubit-status.py
+          ${GITHUB_WORKSPACE}/${EXAMPLE_PATH_1}/line-grid-qubit_X.py
+          ${GITHUB_WORKSPACE}/${EXAMPLE_PATH_1}/line-grid-qubit_bell-state.py
+          ${GITHUB_WORKSPACE}/${EXAMPLE_PATH_1}/sim-vs-run-repetitions.py
+
